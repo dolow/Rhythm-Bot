@@ -1,3 +1,24 @@
+This is my custom version of [Rhythm-Bot](https://github.com/Malexion/Rhythm-Bot) so please refer origin.
+
+Notice:
+
+discord-bot-quickstart/lib/models/bot.model.js occures error on following line;
+
+I'd like to fix it but I could not find the public repo, so it can be fixed by users own responsibility.
+
+```
+process.on('unhandledRejection', error => this.log.error('Uncaught Promise Rejection', error));
+```
+
+move this line to IBot constructor after logger initialization, then change `log` property name to;
+
+```
+process.on('unhandledRejection', error => this.logger.error('Uncaught Promise Rejection', error));
+```
+
+
+---
+
 # Rhythm-Bot 2.1.5 Search / Rich Text / Buttons!
 - New search command anything after !search will be searched against youtube and return the top 3 results
 - Press the thumbs up reaction emoji to add the item to your queue

@@ -9,9 +9,9 @@ const helptext = readFile('../helptext.txt');
 const random = (array) => {
     return array[Math.floor(Math.random() * array.length)];
 };
-const pingPhrases = [ 
-    `Can't stop won't stop!`, 
-    `:ping_pong: Pong Bitch!` 
+const pingPhrases = [
+    `Can't stop won't stop!`,
+    `:ping_pong: Pong Bitch!`
 ];
 
 export class RhythmBot extends IBot<IRhythmBotConfig> {
@@ -31,7 +31,7 @@ export class RhythmBot extends IBot<IRhythmBotConfig> {
                 log: true
             },
             command: {
-                symbol: '!'
+                symbol: '%'
             },
             directory: {
                 plugins: './plugins',
@@ -67,6 +67,9 @@ export class RhythmBot extends IBot<IRhythmBotConfig> {
             })
             .on('help', (cmd: SuccessfulParsedMessage<Message>, msg: Message) => {
                 msg.channel.send(this.helptext);
+            })
+            .on('snack', (cmd: SuccessfulParsedMessage<Message>, msg: Message) => {
+                msg.channel.send(`Thank you !\nom om om...\n it\'s tasty !\nBut how did you know my favorite snack is ${cmd.body} !?`);
             })
             .on('join', (cmd: SuccessfulParsedMessage<Message>, msg: Message) => {
                 joinUserChannel(msg)
@@ -267,5 +270,5 @@ export class RhythmBot extends IBot<IRhythmBotConfig> {
     }
 
     onRegisterConsoleCommands(map: CommandMap<(args: ParsedArgs, rl: Interface) => void>): void { }
-    
+
 }

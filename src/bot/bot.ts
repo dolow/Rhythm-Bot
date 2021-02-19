@@ -138,14 +138,8 @@ export class RhythmBot extends IBot<IRhythmBotConfig> {
                 });
             })
             .on('add', (cmd: SuccessfulParsedMessage<Message>, msg: Message) => {
-                if(cmd.arguments.length > 0) {
-                    cmd.arguments.forEach(arg => {
-                        let parts = arg.split(':');
-                        if(parts.length == 2) {
-                            this.player.addMedia({ type: parts[0], url: parts[1], requestor: msg.author.username });
-                        } else
-                            msg.channel.send(createErrorEmbed(`Invalid media type format`));
-                    });
+                if(cmd.arguments.length == 2) {
+                    this.player.addMedia({ type: cmd.arguments[0], url: cmd.arguments[1], requestor: msg.author.username });
                 }
             })
             .on('remove', (cmd: SuccessfulParsedMessage<Message>, msg: Message) => {
